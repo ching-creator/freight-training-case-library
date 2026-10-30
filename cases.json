@@ -1,0 +1,87 @@
+
+{
+  "cases": [
+    {
+      "id": "online-breakdown-001",
+      "name": "Mechanical Breakdown and Delivery Risk",
+      "level": "Intermediate",
+      "equipment": "53-ft Dry Van",
+      "stages": [
+        {
+          "title": "Carrier Reports Breakdown",
+          "event": "Load LD-3051 is traveling from Dallas, TX to Memphis, TN. The carrier reports a mechanical breakdown near Little Rock, AR. Repair completion time is unknown, and delivery is scheduled in four hours.",
+          "options": [
+            "Immediately mark the shipment as delivered.",
+            "Verify the breakdown details, current location, repair estimate, and delivery risk with the carrier.",
+            "Ignore the situation until the scheduled delivery time."
+          ],
+          "correct": 1,
+          "why": "Verify the carrier's report and assess delivery risk before communicating an updated ETA."
+        },
+        {
+          "title": "Delivery Appointment at Risk",
+          "event": "The carrier confirms the repair may take three hours. The original delivery appointment is now at risk.",
+          "options": [
+            "Notify authorized stakeholders, coordinate receiver acceptance or rescheduling, and document the carrier-reported ETA.",
+            "Promise that the shipment will arrive on time.",
+            "Change the appointment without contacting the receiver."
+          ],
+          "correct": 0,
+          "why": "A revised ETA is not a confirmed appointment. Coordinate with the authorized parties and record the outcome."
+        },
+        {
+          "title": "After-Hours Shift Handover",
+          "event": "Your shift ends in 15 minutes. The repair is ongoing, and the receiver has not confirmed a new appointment.",
+          "options": [
+            "Close the exception before leaving.",
+            "Tell the next shift that everything is fine.",
+            "Document verified facts, pending appointment, contact history, escalation status, owner, and next follow-up time."
+          ],
+          "correct": 2,
+          "why": "An unresolved shipment exception requires a complete and actionable handover."
+        }
+      ]
+    },
+    {
+      "id": "online-ai-002",
+      "name": "AI Tracking Error and ETA Conflict",
+      "level": "Advanced",
+      "equipment": "Reefer",
+      "stages": [
+        {
+          "title": "AI Tracking Alert",
+          "event": "Load LD-4082 is traveling from Chicago, IL to Columbus, OH. Automated tracking predicts a two-hour delay, but the carrier previously reported an on-time ETA.",
+          "options": [
+            "Immediately notify the customer that delivery is delayed.",
+            "Ignore the automated alert.",
+            "Compare GPS timestamps, review the carrier update, and verify the latest shipment status."
+          ],
+          "correct": 2,
+          "why": "AI predictions are not verified shipment facts. Conflicting information must be investigated."
+        },
+        {
+          "title": "Conflicting ETA Updates",
+          "event": "The carrier confirms a revised ETA of 8:30 PM ET, but the automated tracking system still shows 7:15 PM ET.",
+          "options": [
+            "Document the verified carrier update, assess the appointment impact, and flag the conflicting automated ETA according to SOP.",
+            "Delete all tracking history.",
+            "Assume the automated ETA is always correct."
+          ],
+          "correct": 0,
+          "why": "Preserve the audit trail and distinguish the confirmed carrier report from potentially stale automated data."
+        },
+        {
+          "title": "Automated Delivery Confirmation",
+          "event": "The truck enters the receiver geofence. The system automatically marks the shipment Delivered, but unloading has not started.",
+          "options": [
+            "Close the shipment immediately.",
+            "Flag or correct the premature status through authorized procedures, verify unloading, and obtain required delivery evidence.",
+            "Delete the shipment record."
+          ],
+          "correct": 1,
+          "why": "Geofence arrival does not establish completed delivery. Delivery confirmation and required documentation must be verified."
+        }
+      ]
+    }
+  ]
+}
