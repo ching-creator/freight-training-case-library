@@ -1,4 +1,3 @@
-
 {
   "cases": [
     {
@@ -80,6 +79,211 @@
           ],
           "correct": 1,
           "why": "Geofence arrival does not establish completed delivery. Delivery confirmation and required documentation must be verified."
+        }
+      ]
+    },
+    {
+      "id": "online-gps-003",
+      "name": "GPS Pings Stop During Transit",
+      "level": "Intermediate",
+      "equipment": "53-ft Dry Van",
+      "stages": [
+        {
+          "title": "Tracking Signal Lost",
+          "event": "Load LD-5103 is traveling from Atlanta, GA to Nashville, TN. The tracking platform has not received a GPS ping for 75 minutes. Delivery is scheduled this evening.",
+          "options": [
+            "Mark the load delayed without verification.",
+            "Check the last timestamp and location, review tracking health, and contact the carrier using approved channels.",
+            "Assume the truck has stopped moving."
+          ],
+          "correct": 1,
+          "why": "A missing ping does not prove a delay. Verify the signal issue and shipment movement."
+        },
+        {
+          "title": "Carrier Confirms Movement",
+          "event": "The carrier reports the truck is moving and provides a current location, but the tracking application still shows an old ping.",
+          "options": [
+            "Record the carrier-reported location with its source and time, troubleshoot tracking, and set the next check.",
+            "Replace the old GPS timestamp with a fabricated live ping.",
+            "Ignore the tracking outage for the rest of the trip."
+          ],
+          "correct": 0,
+          "why": "Maintain an honest audit trail and distinguish manual confirmation from automated tracking."
+        },
+        {
+          "title": "Customer Requests an ETA",
+          "event": "The customer requests a current ETA while automated tracking is still offline.",
+          "options": [
+            "Promise the original ETA without checking.",
+            "Say the truck is lost.",
+            "Provide the latest verified carrier-reported ETA with its source, note the tracking limitation, and continue monitoring."
+          ],
+          "correct": 2,
+          "why": "Communicate verified information and uncertainty without inventing live tracking data."
+        }
+      ]
+    },
+    {
+      "id": "online-afterhours-004",
+      "name": "After-Hours Carrier Unreachable",
+      "level": "Advanced",
+      "equipment": "Box Truck",
+      "stages": [
+        {
+          "title": "Missed Check Call",
+          "event": "Load LD-5204 has an early-morning delivery. The carrier missed a scheduled update and the driver is not answering.",
+          "options": [
+            "Repeatedly call the driver until they answer while driving.",
+            "Check available tracking and contact the carrier dispatch or authorized alternate; record attempts.",
+            "Immediately report the freight stolen."
+          ],
+          "correct": 1,
+          "why": "Use safe, approved contact paths and verify available evidence before escalating."
+        },
+        {
+          "title": "Delivery Window Approaches",
+          "event": "The last verified position is two hours old. The receiver appointment is approaching and the carrier dispatch has not responded.",
+          "options": [
+            "Escalate per SOP, flag the appointment risk, and request an authorized alternate contact or receiver contingency.",
+            "Change the TMS to Delivered.",
+            "Wait until the next shift without leaving notes."
+          ],
+          "correct": 0,
+          "why": "Time-sensitive exceptions need escalation, documentation, and a contingency plan."
+        },
+        {
+          "title": "Shift Handover",
+          "event": "Your shift ends before the carrier responds.",
+          "options": [
+            "Delete unsuccessful contact attempts.",
+            "Tell the next shift to figure it out.",
+            "Record last verified location, attempts, appointment deadline, escalation owner, and next action time."
+          ],
+          "correct": 2,
+          "why": "A complete handover prevents the next shift from losing critical context."
+        }
+      ]
+    },
+    {
+      "id": "online-tms-005",
+      "name": "TMS Status Conflict and CRM Update",
+      "level": "Intermediate",
+      "equipment": "Sprinter Van",
+      "stages": [
+        {
+          "title": "Premature Delivery Status",
+          "event": "Load LD-5305 is shown as Delivered in the TMS, but the carrier says the vehicle is waiting at the receiver dock.",
+          "options": [
+            "Close the load and invoice immediately.",
+            "Verify the actual delivery milestone and correct or flag the status using authorized procedures.",
+            "Delete the shipment and start over."
+          ],
+          "correct": 1,
+          "why": "Arriving at a receiver is not proof of completed unloading or delivery."
+        },
+        {
+          "title": "Customer Sees Incorrect Status",
+          "event": "The customer CRM record contains an automated Delivered notification that may be inaccurate.",
+          "options": [
+            "Document the discrepancy, coordinate an accurate customer correction through approved channels, and preserve the audit trail.",
+            "Ignore the customer because the TMS says Delivered.",
+            "Tell the customer the POD is signed without seeing it."
+          ],
+          "correct": 0,
+          "why": "CRM communications must reflect verified operational facts."
+        },
+        {
+          "title": "Document Closeout",
+          "event": "The carrier confirms unloading is complete but has not sent the signed POD.",
+          "options": [
+            "Invent a POD number.",
+            "Close the shipment with no evidence even if POD is required.",
+            "Request the required POD, record the confirmed delivery time and source, and close only when company requirements are met."
+          ],
+          "correct": 2,
+          "why": "Final closeout requires the appropriate proof and documentation."
+        }
+      ]
+    },
+    {
+      "id": "online-pickup-006",
+      "name": "Missed Pickup Appointment Risk",
+      "level": "Advanced",
+      "equipment": "Hotshot Gooseneck",
+      "stages": [
+        {
+          "title": "Driver ETA Slips",
+          "event": "Load LD-5406 has a 2:00 PM pickup appointment. The driver reports a breakdown and now expects to arrive at 3:30 PM.",
+          "options": [
+            "Confirm the revised ETA, check shipper receiving rules, and notify the broker or customer according to SOP.",
+            "Tell the shipper the truck is already on site.",
+            "Cancel the shipment without authorization."
+          ],
+          "correct": 0,
+          "why": "An appointment change must be coordinated rather than assumed."
+        },
+        {
+          "title": "Shipper Cannot Accommodate",
+          "event": "The shipper says the 3:30 PM arrival is too late and no later slot is currently available.",
+          "options": [
+            "Tell the driver to enter the facility anyway.",
+            "Request the next authorized appointment, evaluate backup equipment or carrier options, and obtain required approvals.",
+            "Change the pickup time in the TMS without confirmation."
+          ],
+          "correct": 1,
+          "why": "Use authorized alternatives and assess operational feasibility and cost."
+        },
+        {
+          "title": "Possible Accessorial Charge",
+          "event": "The carrier asks for TONU after the appointment fails. The contract and responsibility are not yet confirmed.",
+          "options": [
+            "Approve payment immediately.",
+            "Reject the charge without reviewing evidence.",
+            "Preserve dispatch instructions, timestamps, appointment records, and agreements; route the request for contractual review."
+          ],
+          "correct": 2,
+          "why": "TONU eligibility depends on the applicable agreement and facts, not assumptions."
+        }
+      ]
+    },
+    {
+      "id": "online-customer-007",
+      "name": "Customer Escalation and AI Delay Alert",
+      "level": "Advanced",
+      "equipment": "Reefer",
+      "stages": [
+        {
+          "title": "AI Predicts Late Delivery",
+          "event": "Load LD-5507 is moving from Phoenix, AZ to Las Vegas, NV. An AI tool predicts a missed delivery window, but the latest driver update is older than two hours.",
+          "options": [
+            "Verify fresh tracking and carrier information before treating the prediction as confirmed.",
+            "Tell the customer delivery has definitely failed.",
+            "Turn off every alert permanently."
+          ],
+          "correct": 0,
+          "why": "Predictions trigger investigation; they are not confirmation of an actual delay."
+        },
+        {
+          "title": "Customer Demands Immediate Answer",
+          "event": "The customer asks whether the receiver appointment will be missed. The carrier reports a revised ETA, but receiver acceptance is not confirmed.",
+          "options": [
+            "Guarantee the receiver will unload.",
+            "Share the verified ETA and uncertainty, request receiver confirmation, and document the escalation.",
+            "Avoid all communication until tomorrow."
+          ],
+          "correct": 1,
+          "why": "Separate verified movement information from unconfirmed appointment acceptance."
+        },
+        {
+          "title": "Escalation Resolution",
+          "event": "The receiver offers a later appointment subject to customer approval.",
+          "options": [
+            "Book it without approval regardless of instructions.",
+            "Tell the carrier to unload at a different facility.",
+            "Seek the required approval, confirm the revised appointment, update TMS and CRM records, and hand over outstanding tasks."
+          ],
+          "correct": 2,
+          "why": "Coordinate approvals and ensure operational systems reflect the confirmed plan."
         }
       ]
     }
